@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box; /* Padding or border won't affect the width of a box */
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+}
+
+.container {
+  display: flex;
+  width: 90vw;
+}
+
+.panel {
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  flex: 0.5; /* sets the relative width in flex box*/
+  margin: 10px;
+  position: relative; /* for the h3 */
+  transition: flex 0.7s ease-in;
+}
+
+.panel h3 {
+  font-size: 24px;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  opacity: 0;
+}
+
+.panel.active {
+  flex: 5;
+}
+
+.panel.active h3 {
+  opacity: 1;
+  /* property to apply the transition on , time duration of the transition, transition effect, delay */
+  transition: opacity 0.3s ease-in 0.4s; 
+}
+
+/* These style will occur only if the screen is under 480 px */
+@media (max-width: 480px) {
+  .container {
+    width: 100vw;
+  }
+
+  /* the below is a pseudo selector and will select the a particular element with a particular index of that class. */
+  .panel:nth-of-type(4),
+  .panel:nth-of-type(5) {
+    display: none;
+  }
+}
+
+@media (min-width: 1400px) {
+  .panel.active {
+    margin: 0 100px;
+  }
+}
