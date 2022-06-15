@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Muli&display=swap");
+
+/* Defining custom properties/Variables */ 
+
+/* To define custom properties we need a scope */
+:root{
+  --line-border-fill:#3498db;
+  --line-border-empty:#e0e0e0;
+}
+
+* {
+  box-sizing: border-box; /* Padding or border won't affect the width of a box */
+}
+
+body {
+  background-color: #f6f7fb;
+  font-family: "Muli", sans-serif;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+}
+
+.container{
+  text-align: center;
+}
+
+.progress-container{
+  display: flex;
+  justify-content: space-between;
+  position: relative;  /* We add relative position so that we can position other things absolute */
+  margin-bottom: 30px;
+  max-width: 100%;
+  width: 350px;
+}
+
+/* This will be gray line behind the blue line using the before selector */
+.progress-container::before{
+  /* When we add before or after we need to add content and set it to empty string */
+  content: '';
+  background-color: var(--line-border-empty);
+  position: absolute;
+  top: 50%; /* makes the beginning of the line in middle*/
+  left: 0;
+  height: 4px;
+  width: 100%;
+  transform: translateY(-50%); /* Make the line in middle*/
+  z-index: -1;
+}
+
+/* This will be the blue line which displays the progress */
+.progress{
+  background-color: var(--line-border-fill);
+  position: absolute;
+  top: 50%; /* makes the beginning of the line in middle*/
+  left: 0;
+  height: 4px;
+  width: 0%;
+  transform: translateY(-50%); /* Make the line in middle*/
+  z-index: -1;
+  transition: 0.4s ease;
+}
+
+.circle{
+  background-color: white;
+  color: #999;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--line-border-empty);
+  transition: 0.4s ease;
+}
+
+.circle.active{
+  border-color: var(--line-border-fill);
+}
+
+.btn{
+  background-color: var(--line-border-fill);
+  color: white;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 8px 30px;
+  margin: 5px;
+  font-size: 14px;
+}
+
+.btn:active{
+  /* This will scale it down to 98% of its size */
+  transform: scale(0.98);
+}
+
+.btn:focus{
+  outline: 0;
+}
+
+.btn:disabled{
+  background-color: var(--line-border-empty);
+  cursor:not-allowed
+}
